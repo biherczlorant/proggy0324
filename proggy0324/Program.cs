@@ -63,22 +63,22 @@ namespace proggy0324
     {
         static void Main(string[] args)
         {
-            //1. feladat
+            //2. feladat
             List<Beolvas> lista = new List<Beolvas>();
             foreach(var i in File.ReadLines("toto.txt").Skip(1))
             {
                 lista.Add(new Beolvas(i));
             }
-            //2. feladat
-            Console.WriteLine($"2. feladat: Fordulók száma: {lista.Count}");
             //3. feladat
+            Console.WriteLine($"3. feladat: Fordulók száma: {lista.Count}");
+            //4. feladat
             int thelper = 0;
             foreach (var i in lista)
             {
                 thelper += i.ttsz;
             }
-            Console.WriteLine($"3. feladat: Telitalálatos szelvények száma: {thelper} db");
-            //4.feladat
+            Console.WriteLine($"4. feladat: Telitalálatos szelvények száma: {thelper} db");
+            //5.feladat
             thelper = 0;
             long osszeg = 0;
             foreach (var i in lista)
@@ -90,7 +90,30 @@ namespace proggy0324
                 }
             }
             long atlag = osszeg / thelper;
-            Console.WriteLine($"4. feladat: Átlag: {atlag} Ft");
+            Console.WriteLine($"5. feladat: Átlag: {atlag} Ft");
+            // 6. feladat
+            int minttf = lista.ElementAt(9).ttf;
+            int maxttf = lista.ElementAt(0).ttf;
+            int max = 0;
+            int min = 0;
+            int j = 0;
+            foreach (var i in lista)
+            {
+                
+                if(i.ttf > maxttf)
+                {
+                    maxttf = i.ttf;
+                    max = j;
+                }
+                if(i.ttf < minttf && i.ttf != 0)
+                {
+                    minttf = i.ttf;
+                    min = j;
+                }
+                j++;
+            }
+            Console.WriteLine($"6. feladat:\n\tLegnagyobb:\n\tÉv: {lista[max].ev}\n\tHét: {lista[max].het}.\n\tForduló: {lista[max].fordulo}.\n\tTelitalálat: {lista[max].ttsz} db\n\tNyeremény: {lista[max].ttf}\n\tEredmények: {lista[max].eredmeny}");
+            Console.WriteLine($"\n\tLegkisebb:\n\tÉv: {lista[min].ev}\n\tHét: {lista[min].het}.\n\tForduló: {lista[min].fordulo}.\n\tTelitalálat: {lista[min].ttsz} db\n\tNyeremény: {lista[min].ttf}\n\tEredmények: {lista[min].eredmeny}");
         }
     }
 }
